@@ -1,163 +1,190 @@
-{
-  "name": "HEISTSENG - Agente comercial ferretería",
-  "nodes": [
-    {
-      "parameters": {
-        "options": {}
-      },
-      "type": "@n8n/n8n-nodes-langchain.chatTrigger",
-      "typeVersion": 1.5,
-      "position": [
-        0,
-        0
-      ],
-      "id": "1f116095-096a-4b79-91d7-74bdbcdbf313",
-      "name": "When chat message received",
-      "webhookId": "dc3e30c3-10d4-47dd-bea3-d8bcde9df03e"
-    },
-    {
-      "parameters": {
-        "options": {
-          "systemMessage": "Tu nombre es GIS.\n\nEres GIS, el asesor comercial de HEISTSENG, empresa peruana especializada en la venta y comercialización de productos de ferretería industrial.\n\nTu función es atender a los clientes de manera natural, rápida, clara y práctica. Ayudas a identificar productos, verificar disponibilidad, consultar precios, orientar sobre cantidades y condiciones de venta, y facilitar el proceso de compra.\n\nHablas como un asesor comercial humano: eres amable, directo y profesional. No eres un formulario ni debes sonar como un robot.\n\nTu objetivo es entender qué necesita el cliente, consultar la información disponible y darle una respuesta concreta que lo ayude a avanzar con su compra.\n\nSi el cliente pregunta quién eres, responde:\n\"Soy GIS, asesor comercial de HEISTSENG. ¿Qué producto necesitas?\"\n\nSi el cliente saluda, responde de manera natural y breve, por ejemplo:\n\"¡Hola! Soy GIS, asesor comercial de HEISTSENG. ¿Qué producto estás buscando?\"\n\nNo necesitas presentarte nuevamente si la conversación ya comenzó."
-        }
-      },
-      "type": "@n8n/n8n-nodes-langchain.agent",
-      "typeVersion": 3.1,
-      "position": [
-        384,
-        0
-      ],
-      "id": "aa33c37b-c5b0-4a65-85ee-501f77da0faa",
-      "name": "AI Agent"
-    },
-    {
-      "parameters": {
-        "model": {
-          "__rl": true,
-          "mode": "list",
-          "value": "gpt-5-mini"
-        },
-        "builtInTools": {},
-        "options": {}
-      },
-      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
-      "typeVersion": 1.3,
-      "position": [
-        256,
-        128
-      ],
-      "id": "13a88d5c-d547-45b4-9ee2-93bad8244e3c",
-      "name": "OpenAI Chat Model",
-      "credentials": {
-        "openAiApi": {
-          "id": null,
-          "name": "",
-          "__aiGatewayManaged": true
-        }
-      }
-    },
-    {
-      "parameters": {},
-      "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
-      "typeVersion": 1.4,
-      "position": [
-        400,
-        128
-      ],
-      "id": "d54b1fd2-c949-4886-92e3-cea684865fa2",
-      "name": "Simple Memory"
-    },
-    {
-      "parameters": {
-        "documentId": {
-          "__rl": true,
-          "value": "1ruEVnK1gzx1MmNC7jPvbs1W500n2hIyoqmZqUQ0nEfk",
-          "mode": "list",
-          "cachedResultName": "PRECIO VENTA",
-          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1ruEVnK1gzx1MmNC7jPvbs1W500n2hIyoqmZqUQ0nEfk/edit?usp=drivesdk"
-        },
-        "sheetName": {
-          "__rl": true,
-          "value": "gid=0",
-          "mode": "list",
-          "cachedResultName": "lista",
-          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1ruEVnK1gzx1MmNC7jPvbs1W500n2hIyoqmZqUQ0nEfk/edit#gid=0"
-        },
-        "options": {}
-      },
-      "type": "n8n-nodes-base.googleSheetsTool",
-      "typeVersion": 4.7,
-      "position": [
-        560,
-        176
-      ],
-      "id": "ff66b517-bde7-41fc-b4ae-3bba16050a83",
-      "name": "Get row(s) in sheet in Google Sheets",
-      "credentials": {
-        "googleSheetsOAuth2Api": {
-          "id": "i1DtI1eK0sXkOC2X",
-          "name": "Google Sheets account"
-        }
-      }
-    }
-  ],
-  "pinData": {},
-  "connections": {
-    "When chat message received": {
-      "main": [
-        [
-          {
-            "node": "AI Agent",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "OpenAI Chat Model": {
-      "ai_languageModel": [
-        [
-          {
-            "node": "AI Agent",
-            "type": "ai_languageModel",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Simple Memory": {
-      "ai_memory": [
-        [
-          {
-            "node": "AI Agent",
-            "type": "ai_memory",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Get row(s) in sheet in Google Sheets": {
-      "ai_tool": [
-        [
-          {
-            "node": "AI Agent",
-            "type": "ai_tool",
-            "index": 0
-          }
-        ]
-      ]
-    }
-  },
-  "active": false,
-  "settings": {
-    "executionOrder": "v1",
-    "binaryMode": "separate"
-  },
-  "versionId": "6f5f88a3-0ff9-45c2-a0a3-eb49409eba18",
-  "meta": {
-    "templateCredsSetupCompleted": true,
-    "instanceId": "b5db959fd2f2984215fc06a34855684e2fc4618648cab117f73e5ea43a9992c9"
-  },
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>HEISTSENG | Corporación Ferretera</title>
+<style>
+:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);
+--bg:#f5f6f8;--card:#fff;--ink:#14213d;--mut:#5b6577;--acc:#f26b1d;--navy:#0f1b33;--line:#e2e6ee}
+:root[data-theme="dark"]{--bg:#0b1220;--card:#131d33;--ink:#eef1f7;--mut:#9aa6bd;--line:#223052}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0b1220;--card:#131d33;--ink:#eef1f7;--mut:#9aa6bd;--line:#223052}}
+html{scroll-padding-top:env(safe-area-inset-top,0px);scroll-behavior:smooth}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Segoe UI",system-ui,-apple-system,Arial,sans-serif;line-height:1.6}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:1100px;margin:auto;padding:0 20px}
+header{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--navy);color:#fff}
+.nav{display:flex;align-items:center;justify-content:space-between;height:64px}
+.logo{font-weight:800;letter-spacing:2px;font-size:20px}.logo b{color:var(--acc)}
+.nav nav{display:flex;gap:22px;font-size:14px}.nav nav a:hover{color:var(--acc)}
+.btn{display:inline-block;background:var(--acc);color:#fff;padding:12px 24px;border-radius:6px;font-weight:600;border:0;cursor:pointer;font-size:15px}
+.btn.o{background:transparent;border:2px solid #fff}
+.hero{background:linear-gradient(135deg,#0f1b33 55%,#1d3463);color:#fff;padding:90px 0 80px;position:relative;overflow:hidden}
+.hero:after{content:"";position:absolute;right:-80px;top:-80px;width:380px;height:380px;border:60px solid rgba(242,107,29,.18);transform:rotate(45deg)}
+.hero h1{font-size:clamp(30px,5vw,50px);line-height:1.15;margin:0 0 16px;max-width:720px}
+.hero h1 span{color:var(--acc)}
+.hero p{max-width:600px;color:#c9d3e8;font-size:18px;margin:0 0 28px}
+.hero .btn{margin-right:10px;margin-bottom:10px}
+section{padding:70px 0}
+h2{font-size:30px;margin:0 0 8px}h2+p{color:var(--mut);margin:0 0 32px}
+.tag{color:var(--acc);font-weight:700;font-size:13px;letter-spacing:2px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:24px;transition:.2s}
+.card:hover{transform:translateY(-4px);border-color:var(--acc)}
+.ic{width:46px;height:46px;border-radius:8px;background:var(--navy);color:var(--acc);display:grid;place-items:center;font-weight:800;margin-bottom:14px}
+.card h3{margin:0 0 6px;font-size:17px}.card p{margin:0;color:var(--mut);font-size:14px}
+.band{background:var(--navy);color:#fff}.band p{color:#c9d3e8!important}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:20px;text-align:center}
+.stats b{display:block;font-size:34px;color:var(--acc)}
+.two{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:30px}
+form{display:grid;gap:12px}
+input,textarea{width:100%;padding:12px;border:1px solid var(--line);border-radius:6px;background:var(--card);color:var(--ink);font:inherit}
+.row{display:flex;gap:10px;flex-wrap:wrap}
+footer{background:var(--navy);color:#9fb0d0;padding:30px 0;font-size:14px;text-align:center}
+/* chatbot */
+#fab{position:fixed;right:18px;bottom:calc(18px + env(safe-area-inset-bottom,0px));z-index:50;width:60px;height:60px;border-radius:50%;background:var(--acc);color:#fff;border:0;font-size:26px;cursor:pointer;box-shadow:0 6px 20px rgba(0,0,0,.3)}
+#chat{position:fixed;right:18px;bottom:calc(88px + env(safe-area-inset-bottom,0px));z-index:50;width:360px;max-width:calc(100% - 36px);height:520px;max-height:calc(100% - 120px);background:var(--card);border:1px solid var(--line);border-radius:14px;display:none;flex-direction:column;overflow:hidden;box-shadow:0 12px 40px rgba(0,0,0,.35)}
+#chat.on{display:flex}
+.ch{background:var(--navy);color:#fff;padding:14px 16px;font-weight:600}.ch small{display:block;font-weight:400;color:#9fb0d0}
+#msgs{flex:1;overflow-y:auto;padding:14px;display:flex;flex-direction:column;gap:8px}
+.m{max-width:85%;padding:9px 13px;border-radius:12px;font-size:14px;white-space:pre-line}
+.b{background:var(--bg);align-self:flex-start}.u{background:var(--acc);color:#fff;align-self:flex-end}
+.qs{display:flex;flex-wrap:wrap;gap:6px;padding:8px 12px;border-top:1px solid var(--line);max-height:132px;overflow-y:auto}
+.qs button{background:transparent;border:1px solid var(--acc);color:var(--acc);border-radius:16px;padding:5px 10px;font-size:12px;cursor:pointer}
+.qs button:hover{background:var(--acc);color:#fff}
+.in{display:flex;border-top:1px solid var(--line)}.in input{border:0;border-radius:0}.in button{background:var(--acc);color:#fff;border:0;padding:0 16px;cursor:pointer}
+.act{display:flex;gap:6px;flex-wrap:wrap;align-self:flex-start}
+.act a{background:#25a244;color:#fff;padding:7px 12px;border-radius:6px;font-size:13px}.act a.e{background:var(--navy)}
+.m img{display:block;max-width:190px;border-radius:8px;margin-bottom:4px}
+#pv{display:none;align-items:center;gap:10px;padding:6px 12px;border-top:1px solid var(--line);font-size:13px;color:var(--mut)}
+#pv img{width:38px;height:38px;object-fit:cover;border-radius:6px}#pv button{margin-left:auto;background:none;border:0;color:var(--mut);cursor:pointer;font-size:16px}
+.in .clip{background:transparent;color:var(--ink);font-size:18px;padding:0 12px}
+@media(max-width:700px){.nav nav a:not(.btn){display:none}}
+</style>
+</head>
+<body>
+<header><div class="wrap nav">
+  <div class="logo">HEIST<b>SENG</b></div>
+  <nav><a href="#productos">Productos</a><a href="#clientes">Clientes</a><a href="#envios">Envíos</a><a href="#contacto">Contacto</a><a class="btn" style="padding:8px 16px" href="#contacto">Cotizar</a></nav>
+</div></header>
+
+<div class="hero"><div class="wrap">
+  <div class="tag">CORPORACIÓN FERRETERA · PERÚ</div>
+  <h1>Distribuidores de ferretería <span>al por mayor y menor</span></h1>
+  <p>Ángulos, tornillos, pernos, abrazaderas, platina doble, colgador de cuadro y gancho trupan. Calidad, stock y envíos a todo el Perú.</p>
+  <a class="btn" href="#contacto">Solicitar cotización</a><a class="btn o" href="#productos">Ver productos</a>
+</div></div>
+
+<section class="band" style="padding:36px 0"><div class="wrap stats">
+  <div><b>Mayor y menor</b>Venta flexible</div><div><b>Lima</b>y provincias</div><div><b>7</b>líneas de producto</div><div><b>Stock</b>permanente</div>
+</div></section>
+
+<section id="productos"><div class="wrap">
+  <div class="tag">CATÁLOGO</div><h2>Nuestros productos</h2><p>Todo lo que necesitas para tu obra, taller o ferretería.</p>
+  <div class="grid">
+    <div class="card"><div class="ic">AB</div><h3>Abrazaderas</h3><p>Sujeción segura para tuberías y estructuras.</p></div>
+    <div class="card"><div class="ic">TO</div><h3>Tornillos</h3><p>Variedad de tipos y medidas para cada trabajo.</p></div>
+    <div class="card"><div class="ic">AN</div><h3>Ángulos</h3><p>Ángulo pesado, negro reforzado y para cama.</p></div>
+    <div class="card"><div class="ic">PI</div><h3>Pernos inox</h3><p>Acero inoxidable resistente a la corrosión.</p></div>
+    <div class="card"><div class="ic">PO</div><h3>Poleas</h3><p>Para sistemas de izaje y tracción.</p></div>
+    <div class="card"><div class="ic">TR</div><h3>Trupan</h3><p>Ganchos y accesorios para trupan.</p></div>
+    <div class="card"><div class="ic">CA</div><h3>Cables de acero</h3><p>Resistencia para carga y seguridad.</p></div>
+  </div>
+</div></section>
+
+<section id="clientes" style="background:var(--card)"><div class="wrap">
+  <div class="tag">CONFIANZA</div><h2>Nuestros clientes</h2><p>Abastecemos a quienes trabajan todos los días con ferretería.</p>
+  <div class="grid">
+    <div class="card"><h3>Ferreterías</h3><p>Reposición constante para tu negocio.</p></div>
+    <div class="card"><h3>Empresas abastecedoras y de servicio</h3><p>Suministros para operación y mantenimiento.</p></div>
+    <div class="card"><h3>Fabricantes de muebles</h3><p>Ángulos, tornillería y accesorios para producción.</p></div>
+  </div>
+</div></section>
+
+<section id="envios"><div class="wrap two">
+  <div><div class="tag">LOGÍSTICA</div><h2>Se hacen envíos</h2><p style="margin:0">Despachamos a <b>Lima</b> y a <b>provincias</b>. Coordina tu pedido por WhatsApp y recibe tu mercadería donde la necesites.</p></div>
+  <div class="card"><h3>¿Cómo pedir?</h3><p>1. Cuéntanos qué necesitas.<br>2. Recibe tu cotización.<br>3. Coordina pago y envío.</p></div>
+</div></section>
+
+<section id="contacto" class="band"><div class="wrap two">
+  <div><div class="tag">CONTACTO</div><h2>Pide tu cotización</h2><p>Completa el formulario y envíalo por WhatsApp o correo.</p>
+    <p>WhatsApp: <b>982 572 162</b><br>Correo: <b>gisela.cuchupoma@gmail.com</b></p></div>
+  <form id="f" onsubmit="return false">
+    <input id="fn" placeholder="Nombre / Empresa"><input id="ft" placeholder="Teléfono"><textarea id="fm" rows="4" placeholder="¿Qué productos necesitas? Cantidades y medidas"></textarea>
+    <div class="row"><button class="btn" style="background:#25a244" onclick="sendWA(val())">Enviar por WhatsApp</button><button class="btn o" onclick="sendMail(val())">Enviar por correo</button></div>
+  </form>
+</div></section>
+
+<footer>© 2026 HEISTSENG · Corporación Ferretera Heistseng S.A.C. · Perú</footer>
+
+<button id="fab" aria-label="Abrir chat" onclick="tog()">✨</button>
+<div id="chat"><div class="ch">✨ Asistente HEISTSENG<small>Respuestas rápidas · en línea</small></div>
+  <div id="msgs"></div><div class="qs" id="qs"></div>
+  <div id="pv"></div>
+  <div class="in"><button class="clip" title="Adjuntar imagen" onclick="$('fi').click()">📎</button><input type="file" id="fi" accept="image/*" hidden><input id="ci" placeholder="Escribe o envía una foto..."><button onclick="ask()">➤</button></div>
+</div>
+
+<script>
+const WA="51982572162",MAIL="gisela.cuchupoma@gmail.com";
+const N8N="https://gisela.app.n8n.cloud/webhook/dc3e30c3-10d4-47dd-bea3-d8bcde9df03e/chat";
+const SID=(crypto.randomUUID?crypto.randomUUID():String(Date.now())+Math.random());
+let file=null;
+async function n8n(text,f){
+ let o;
+ if(f){const fd=new FormData();fd.append("action","sendMessage");fd.append("sessionId",SID);fd.append("chatInput",text);fd.append("files",f,f.name);o={method:"POST",body:fd}}
+ else o={method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({action:"sendMessage",sessionId:SID,chatInput:text})};
+ const r=await fetch(N8N,o);
+ if(!r.ok)throw new Error("HTTP "+r.status);
+ const d=await r.json();
+ return d.output||d.text||d.message||(Array.isArray(d)&&d[0]&&(d[0].output||d[0].text))||"";
+}
+function shrink(f){return new Promise(res=>{const im=new Image();im.onload=()=>{const k=Math.min(1,1280/Math.max(im.width,im.height)),c=document.createElement("canvas");c.width=im.width*k;c.height=im.height*k;c.getContext("2d").drawImage(im,0,0,c.width,c.height);c.toBlob(b=>res(new File([b],"foto.jpg",{type:"image/jpeg"})),"image/jpeg",.85)};im.onerror=()=>res(f);im.src=URL.createObjectURL(f)})}
+const FAQ=[
+["¿Qué productos venden?","Distribuimos ángulos, tornillos, pernos inox, abrazaderas, poleas, trupan y cables de acero, además de platina doble y colgador de cuadro.",["producto","venden","catalogo","tienen"]],
+["¿Venden al por mayor y menor?","Sí. Somos distribuidores de ferretería al por mayor y al por menor.",["mayor","menor","mayorista","unidad"]],
+["¿Qué tipos de ángulos tienen?","Ángulo pesado, ángulo negro reforzado y ángulo para cama. Escríbenos la medida que buscas y confirmamos stock.",["angulo","ángulo","cama"]],
+["¿Cómo puedo cotizar?","Escríbenos el producto, medida y cantidad, o envía una foto con el clip 📎. También puedes escribir \"cotizar\" para dejar tus datos.",["cotiz","precio","costo","cuanto","cuánto","pago"]],
+["¿Hacen envíos a provincia?","Sí, hacemos envíos a provincias. Coordina destino y forma de envío por WhatsApp.",["provincia","interior"]],
+["¿Hacen envíos en Lima?","Sí, realizamos envíos en Lima. Indícanos tu distrito al cotizar.",["lima","delivery","envio","envío","despacho"]],
+["¿Tienen cables de acero y poleas?","Sí, manejamos cables de acero y poleas. Indícanos diámetro y cantidad para cotizarte.",["cable","polea","acero"]],
+["¿Tienen pernos de acero inoxidable?","Sí, contamos con pernos inox. Cuéntanos medida y cantidad.",["perno","inox","tornillo"]],
+["¿Atienden a fabricantes de muebles?","Sí, atendemos a fabricantes de muebles, ferreterías y empresas abastecedoras y de servicio.",["mueble","fabric","cliente","empresa","ferreter"]],
+["¿Cómo los contacto?","WhatsApp: 982 572 162\nCorreo: gisela.cuchupoma@gmail.com\nTambién puedes dejar tu consulta aquí.",["contacto","whatsapp","correo","telefono","teléfono","horario","donde","dónde"]]
+];
+const $=id=>document.getElementById(id);let step=0,lead={};
+function add(t,c){const d=document.createElement("div");d.className="m "+c;d.textContent=t;$("msgs").appendChild(d);$("msgs").scrollTop=1e9}
+function tog(){$("chat").classList.toggle("on");if(!$("msgs").children.length){add("¡Hola! Soy GIS, asesor de HEISTSENG ✨ Elige una pregunta, escribe lo que necesitas o envíame una foto del producto con el clip 📎.","b")}}
+$("qs").innerHTML=FAQ.map((f,i)=>`<button onclick="pick(${i})">${f[0].replace(/[¿?]/g,"")}</button>`).join("")+`<button onclick="startLead()">✉️ Enviar consulta</button>`;
+function pick(i){add(FAQ[i][0],"u");add(FAQ[i][1],"b")}
+$("fi").onchange=e=>{const f=e.target.files[0];e.target.value="";if(!f)return;shrink(f).then(x=>{file=x;$("pv").innerHTML=`<img src="${URL.createObjectURL(x)}"><span>Imagen lista para enviar</span><button onclick="clr()">✕</button>`;$("pv").style.display="flex"})};
+function clr(){file=null;$("pv").style.display="none"}
+function send(t,f,local){add("✨ Escribiendo...","b");const tp=$("msgs").lastChild;
+ n8n(t,f).then(o=>{tp.remove();if(o)add(o,"b");else if(local)add(local,"b");else fb()})
+ .catch(e=>{console.error("n8n:",e);tp.remove();if(local)add(local,"b");else if(f)add("No pude analizar la imagen en este momento. Escríbenos por WhatsApp al 982 572 162 ✨","b");else fb()})}
+function ask(){const t=$("ci").value.trim();if(!t&&!file)return;$("ci").value="";
+ if(file){const f=file;clr();step=0;const d=document.createElement("div");d.className="m u";const im=new Image();im.src=URL.createObjectURL(f);d.appendChild(im);if(t){const p=document.createElement("div");p.textContent=t;d.appendChild(p)}$("msgs").appendChild(d);$("msgs").scrollTop=1e9;
+  return send(t||"Te envío esta imagen. ¿Tienes este producto? ¿Cuánto cuesta?",f,null)}
+ add(t,"u");if(step)return lf(t);
+ const q=t.toLowerCase();if(/^(cotizar|enviar consulta)$/.test(q))return startLead();
+ let best=-1,sc=0;FAQ.forEach((f,i)=>{const s=f[2].filter(k=>q.includes(k)).length;if(s>sc){sc=s;best=i}});
+ send(t,null,best>=0?FAQ[best][1]:null)}
+function fb(){add("No pude conectarme con el asesor. Déjame tus datos y los envío a WhatsApp.","b");startLead()}
+function startLead(){step=1;lead={};add("¿Cuál es tu nombre o empresa?","b")}
+function lf(t){if(step==1){lead.n=t;step=2;add("¿Tu número de teléfono?","b")}
+ else if(step==2){lead.t=t;step=3;add("¿Qué necesitas? (producto, medida, cantidad)","b")}
+ else{lead.m=t;step=0;n8n("NUEVA CONSULTA WEB\n"+txt(lead)).catch(()=>{});add("¡Gracias! Envía tu consulta con un clic:","b");
+  const d=document.createElement("div");d.className="act";
+  d.innerHTML=`<a href="${wa(lead)}" target="_blank" rel="noopener">WhatsApp</a><a class="e" href="${ml(lead)}">Correo</a>`;$("msgs").appendChild(d);$("msgs").scrollTop=1e9}}
+const txt=l=>`Hola HEISTSENG, soy ${l.n}.\nTeléfono: ${l.t}\nConsulta: ${l.m}`;
+const wa=l=>`https://wa.me/${WA}?text=${encodeURIComponent(txt(l))}`;
+const ml=l=>`mailto:${MAIL}?subject=${encodeURIComponent("Consulta web HEISTSENG - "+l.n)}&body=${encodeURIComponent(txt(l))}`;
+const val=()=>({n:$("fn").value||"cliente",t:$("ft").value||"-",m:$("fm").value||"-"});
+function sendWA(l){window.open(wa(l),"_blank")}function sendMail(l){location.href=ml(l)}
+$("ci").addEventListener("keydown",e=>{if(e.key==="Enter")ask()});
+</script>
+</body>
+</html>
   "nodeGroups": [],
   "id": "FPvSA7rnh4D7QPYx",
   "tags": []
