@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>HEISTSENG | Ferretería industrial en Perú</title>
+<style>
+:root{--bg:#f7f8fa;--card:#fff;--tx:#14213d;--mut:#5b6575;--pri:#0b5fff;--acc:#e63946;--bd:#e2e6ec;--bot:#eef2f9;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0e1420;--card:#171f2e;--tx:#eef1f6;--mut:#9aa6b8;--pri:#5b8cff;--bd:#27324a;--bot:#202b40}}
+:root[data-theme="dark"]{--bg:#0e1420;--card:#171f2e;--tx:#eef1f6;--mut:#9aa6b8;--pri:#5b8cff;--bd:#27324a;--bot:#202b40}
+html{scroll-padding-top:env(safe-area-inset-top,0px);scroll-behavior:smooth}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--tx);font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;line-height:1.55}
+.w{max-width:1000px;margin:0 auto;padding:0 20px}
+header{display:flex;justify-content:space-between;align-items:center;padding:18px 0}
+.logo{font-weight:800;letter-spacing:.12em;font-size:1.25rem}.logo span{color:var(--acc)}
+nav a{color:var(--mut);text-decoration:none;margin-left:18px;font-size:.95rem}
+.hero{padding:56px 0 40px}
+.hero h1{font-size:clamp(2rem,6vw,3.2rem);line-height:1.1;margin:0 0 14px;max-width:700px}
+.hero p{color:var(--mut);max-width:560px;font-size:1.1rem}
+.btn{display:inline-block;background:var(--pri);color:#fff;border:0;padding:12px 22px;border-radius:10px;font-size:1rem;font-weight:600;cursor:pointer;text-decoration:none}
+.btn.g{background:#1faa59}.btn.o{background:transparent;color:var(--pri);border:1.5px solid var(--pri)}
+section{padding:36px 0}
+h2{margin:0 0 18px;font-size:1.6rem}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px}
+.card{background:var(--card);border:1px solid var(--bd);border-radius:14px;padding:20px}
+.card h3{margin:0 0 6px;font-size:1.05rem}.card p{margin:0;color:var(--mut);font-size:.95rem}
+form{display:grid;gap:12px;max-width:560px}
+input,textarea{width:100%;padding:12px;border-radius:10px;border:1px solid var(--bd);background:var(--card);color:var(--tx);font:inherit}
+.row{display:flex;gap:10px;flex-wrap:wrap}
+footer{padding:28px 0 90px;color:var(--mut);font-size:.9rem;border-top:1px solid var(--bd);margin-top:30px}
+/* chatbot */
+#fab{position:fixed;right:18px;bottom:calc(18px + env(safe-area-inset-bottom,0px));width:58px;height:58px;border-radius:50%;background:var(--pri);color:#fff;border:0;font-size:26px;cursor:pointer;box-shadow:0 6px 20px rgba(0,0,0,.25);z-index:20}
+#chat{position:fixed;right:18px;bottom:calc(88px + env(safe-area-inset-bottom,0px));width:360px;max-width:calc(100vw - 36px);height:520px;max-height:calc(100% - 120px);background:var(--card);border:1px solid var(--bd);border-radius:16px;display:none;flex-direction:column;overflow:hidden;box-shadow:0 10px 40px rgba(0,0,0,.28);z-index:20}
+#chat.on{display:flex}
+.ch{background:var(--pri);color:#fff;padding:12px 16px;font-weight:700}
+.ch small{display:block;font-weight:400;opacity:.85}
+#msgs{flex:1;overflow-y:auto;padding:12px;display:flex;flex-direction:column;gap:8px}
+.m{padding:9px 12px;border-radius:12px;max-width:88%;font-size:.93rem;white-space:pre-line}
+.m.b{background:var(--bot);align-self:flex-start}.m.u{background:var(--pri);color:#fff;align-self:flex-end}
+.qs{display:flex;flex-wrap:wrap;gap:6px;padding:0 12px 8px;max-height:112px;overflow-y:auto}
+.qs button{background:transparent;border:1px solid var(--pri);color:var(--pri);border-radius:16px;padding:5px 10px;font-size:.8rem;cursor:pointer}
+.cf{display:flex;border-top:1px solid var(--bd)}
+.cf input{border:0;border-radius:0}.cf button{border:0;background:var(--pri);color:#fff;padding:0 16px;cursor:pointer}
+.m a{color:inherit;font-weight:700}
+</style>
+</head>
+<body>
+<div class="w">
+<header><div class="logo">HEIST<span>SENG</span></div>
+<nav><a href="#servicios">Productos</a><a href="#contacto">Contacto</a></nav></header>
+
+<div class="hero">
+<h1>Ferretería industrial para izaje, fijación y estructuras</h1>
+<p>Cables de acero, accesorios, elementos de izaje, pernos y sistemas Unistrut. Productos de calidad con atención rápida a empresas de todo el Perú.</p>
+<p><a class="btn g" href="https://wa.me/51982572162?text=Hola%20HEISTSENG%2C%20quisiera%20m%C3%A1s%20informaci%C3%B3n" target="_blank" rel="noopener">Escríbenos por WhatsApp</a>
+<a class="btn o" href="#contacto">Solicitar cotización</a></p>
+</div>
+
+<section id="servicios"><h2>Nuestros productos</h2>
+<div class="grid">
+<div class="card"><h3>🪢 Cables de acero</h3><p>Diversas construcciones y diámetros para izaje, tracción y uso industrial.</p></div>
+<div class="card"><h3>🔗 Accesorios para cable de acero</h3><p>Grilletes, perrillos, guardacabos, tensores, mordazas y más.</p></div>
+<div class="card"><h3>🏗️ Elementos de izaje</h3><p>Eslingas, cadenas, ganchos, polipastos y accesorios para elevación de carga.</p></div>
+<div class="card"><h3>🔩 Pernos y fijaciones</h3><p>Pernos, tuercas, arandelas, anclajes y fijaciones para uso industrial.</p></div>
+<div class="card"><h3>📐 Sistemas Unistrut</h3><p>Canales, soportes y accesorios para estructuras y montajes eléctricos y mecánicos.</p></div>
+</div></section>
+
+<section id="contacto"><h2>Contáctanos</h2>
+<p style="color:var(--mut);margin-top:-8px">Completa tus datos y envíalos directo por WhatsApp o por correo.</p>
+<form id="f" onsubmit="return false">
+<input id="n" placeholder="Tu nombre" required>
+<input id="t" placeholder="Tu teléfono / WhatsApp"
