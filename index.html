@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+!DOCTYPE html>
 <html lang="es">
 <head>
 <meta charset="utf-8">
@@ -56,6 +56,10 @@ footer{background:var(--navy);color:#9fb0d0;padding:30px 0;font-size:14px;text-a
 .in{display:flex;border-top:1px solid var(--line)}.in input{border:0;border-radius:0}.in button{background:var(--acc);color:#fff;border:0;padding:0 16px;cursor:pointer}
 .act{display:flex;gap:6px;flex-wrap:wrap;align-self:flex-start}
 .act a{background:#25a244;color:#fff;padding:7px 12px;border-radius:6px;font-size:13px}.act a.e{background:var(--navy)}
+.m img{display:block;max-width:190px;border-radius:8px;margin-bottom:4px}
+#pv{display:none;align-items:center;gap:10px;padding:6px 12px;border-top:1px solid var(--line);font-size:13px;color:var(--mut)}
+#pv img{width:38px;height:38px;object-fit:cover;border-radius:6px}#pv button{margin-left:auto;background:none;border:0;color:var(--mut);cursor:pointer;font-size:16px}
+.in .clip{background:transparent;color:var(--ink);font-size:18px;padding:0 12px}
 @media(max-width:700px){.nav nav a:not(.btn){display:none}}
 </style>
 </head>
@@ -117,24 +121,30 @@ footer{background:var(--navy);color:#9fb0d0;padding:30px 0;font-size:14px;text-a
 <button id="fab" aria-label="Abrir chat" onclick="tog()">✨</button>
 <div id="chat"><div class="ch">✨ Asistente HEISTSENG<small>Respuestas rápidas · en línea</small></div>
   <div id="msgs"></div><div class="qs" id="qs"></div>
-  <div class="in"><input id="ci" placeholder="Escribe tu pregunta..."><button onclick="ask()">➤</button></div>
+  <div id="pv"></div>
+  <div class="in"><button class="clip" title="Adjuntar imagen" onclick="$('fi').click()">📎</button><input type="file" id="fi" accept="image/*" hidden><input id="ci" placeholder="Escribe o envía una foto..."><button onclick="ask()">➤</button></div>
 </div>
 
 <script>
 const WA="51982572162",MAIL="gisela.cuchupoma@gmail.com";
 const N8N="https://gisela.app.n8n.cloud/webhook/dc3e30c3-10d4-47dd-bea3-d8bcde9df03e/chat";
 const SID=(crypto.randomUUID?crypto.randomUUID():String(Date.now())+Math.random());
-async function n8n(text){
- const r=await fetch(N8N,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({action:"sendMessage",sessionId:SID,chatInput:text})});
- if(!r.ok)throw new Error(r.status);
+let file=null;
+async function n8n(text,f){
+ let o;
+ if(f){const fd=new FormData();fd.append("action","sendMessage");fd.append("sessionId",SID);fd.append("chatInput",text);fd.append("files",f,f.name);o={method:"POST",body:fd}}
+ else o={method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({action:"sendMessage",sessionId:SID,chatInput:text})};
+ const r=await fetch(N8N,o);
+ if(!r.ok)throw new Error("HTTP "+r.status);
  const d=await r.json();
  return d.output||d.text||d.message||(Array.isArray(d)&&d[0]&&(d[0].output||d[0].text))||"";
 }
+function shrink(f){return new Promise(res=>{const im=new Image();im.onload=()=>{const k=Math.min(1,1280/Math.max(im.width,im.height)),c=document.createElement("canvas");c.width=im.width*k;c.height=im.height*k;c.getContext("2d").drawImage(im,0,0,c.width,c.height);c.toBlob(b=>res(new File([b],"foto.jpg",{type:"image/jpeg"})),"image/jpeg",.85)};im.onerror=()=>res(f);im.src=URL.createObjectURL(f)})}
 const FAQ=[
 ["¿Qué productos venden?","Distribuimos ángulos, tornillos, pernos inox, abrazaderas, poleas, trupan y cables de acero, además de platina doble y colgador de cuadro.",["producto","venden","catalogo","tienen"]],
 ["¿Venden al por mayor y menor?","Sí. Somos distribuidores de ferretería al por mayor y al por menor.",["mayor","menor","mayorista","unidad"]],
 ["¿Qué tipos de ángulos tienen?","Ángulo pesado, ángulo negro reforzado y ángulo para cama. Escríbenos la medida que buscas y confirmamos stock.",["angulo","ángulo","cama"]],
-["¿Cómo puedo cotizar?","Déjame tus datos aquí mismo o usa el formulario de la web. Te responderemos por WhatsApp con tu cotización. Escribe \"cotizar\".",["cotiz","precio","costo","cuanto","cuánto","pago"]],
+["¿Cómo puedo cotizar?","Escríbenos el producto, medida y cantidad, o envía una foto con el clip 📎. También puedes escribir \"cotizar\" para dejar tus datos.",["cotiz","precio","costo","cuanto","cuánto","pago"]],
 ["¿Hacen envíos a provincia?","Sí, hacemos envíos a provincias. Coordina destino y forma de envío por WhatsApp.",["provincia","interior"]],
 ["¿Hacen envíos en Lima?","Sí, realizamos envíos en Lima. Indícanos tu distrito al cotizar.",["lima","delivery","envio","envío","despacho"]],
 ["¿Tienen cables de acero y poleas?","Sí, manejamos cables de acero y poleas. Indícanos diámetro y cantidad para cotizarte.",["cable","polea","acero"]],
@@ -144,17 +154,22 @@ const FAQ=[
 ];
 const $=id=>document.getElementById(id);let step=0,lead={};
 function add(t,c){const d=document.createElement("div");d.className="m "+c;d.textContent=t;$("msgs").appendChild(d);$("msgs").scrollTop=1e9}
-function tog(){$("chat").classList.toggle("on");if(!$("msgs").children.length){add("¡Hola! Soy el asistente de HEISTSENG ✨ Elige una pregunta o escribe la tuya.","b")}}
+function tog(){$("chat").classList.toggle("on");if(!$("msgs").children.length){add("¡Hola! Soy GIS, asesor de HEISTSENG ✨ Elige una pregunta, escribe lo que necesitas o envíame una foto del producto con el clip 📎.","b")}}
 $("qs").innerHTML=FAQ.map((f,i)=>`<button onclick="pick(${i})">${f[0].replace(/[¿?]/g,"")}</button>`).join("")+`<button onclick="startLead()">✉️ Enviar consulta</button>`;
 function pick(i){add(FAQ[i][0],"u");add(FAQ[i][1],"b")}
-function ask(){const t=$("ci").value.trim();if(!t)return;$("ci").value="";add(t,"u");
- if(step){return lf(t)}
- const q=t.toLowerCase();if(/cotiz|consulta|asesor|pedido/.test(q))return startLead();
+$("fi").onchange=e=>{const f=e.target.files[0];e.target.value="";if(!f)return;shrink(f).then(x=>{file=x;$("pv").innerHTML=`<img src="${URL.createObjectURL(x)}"><span>Imagen lista para enviar</span><button onclick="clr()">✕</button>`;$("pv").style.display="flex"})};
+function clr(){file=null;$("pv").style.display="none"}
+function send(t,f,local){add("✨ Escribiendo...","b");const tp=$("msgs").lastChild;
+ n8n(t,f).then(o=>{tp.remove();if(o)add(o,"b");else if(local)add(local,"b");else fb()})
+ .catch(e=>{console.error("n8n:",e);tp.remove();if(local)add(local,"b");else if(f)add("No pude analizar la imagen en este momento. Escríbenos por WhatsApp al 982 572 162 ✨","b");else fb()})}
+function ask(){const t=$("ci").value.trim();if(!t&&!file)return;$("ci").value="";
+ if(file){const f=file;clr();step=0;const d=document.createElement("div");d.className="m u";const im=new Image();im.src=URL.createObjectURL(f);d.appendChild(im);if(t){const p=document.createElement("div");p.textContent=t;d.appendChild(p)}$("msgs").appendChild(d);$("msgs").scrollTop=1e9;
+  return send(t||"Te envío esta imagen. ¿Tienes este producto? ¿Cuánto cuesta?",f,null)}
+ add(t,"u");if(step)return lf(t);
+ const q=t.toLowerCase();if(/^(cotizar|enviar consulta)$/.test(q))return startLead();
  let best=-1,sc=0;FAQ.forEach((f,i)=>{const s=f[2].filter(k=>q.includes(k)).length;if(s>sc){sc=s;best=i}});
- const local=best>=0?FAQ[best][1]:null;
- add("✨ Escribiendo...","b");const tp=$("msgs").lastChild;
- n8n(t).then(o=>{tp.remove();if(o)add(o,"b");else if(local)add(local,"b");else fb()}).catch(()=>{tp.remove();if(local)add(local,"b");else fb()})}
-function fb(){add("No tengo esa respuesta, pero un asesor puede ayudarte. Te tomo tus datos para enviarlos por WhatsApp.","b");startLead()}
+ send(t,null,best>=0?FAQ[best][1]:null)}
+function fb(){add("No pude conectarme con el asesor. Déjame tus datos y los envío a WhatsApp.","b");startLead()}
 function startLead(){step=1;lead={};add("¿Cuál es tu nombre o empresa?","b")}
 function lf(t){if(step==1){lead.n=t;step=2;add("¿Tu número de teléfono?","b")}
  else if(step==2){lead.t=t;step=3;add("¿Qué necesitas? (producto, medida, cantidad)","b")}
