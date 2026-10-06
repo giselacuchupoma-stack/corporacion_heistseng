@@ -70,4 +70,58 @@ footer{padding:28px 0 90px;color:var(--mut);font-size:.9rem;border-top:1px solid
 <p style="color:var(--mut);margin-top:-8px">Completa tus datos y envíalos directo por WhatsApp o por correo.</p>
 <form id="f" onsubmit="return false">
 <input id="n" placeholder="Tu nombre" required>
-<input id="t" placeholder="Tu teléfono / WhatsApp"
+<input id="t" placeholder="Tu teléfono / WhatsApp" inputmode="tel">
+<input id="e" type="email" placeholder="Tu correo">
+<textarea id="s" rows="4" placeholder="¿Qué productos necesitas? (medidas, cantidades)"></textarea>
+<div class="row"><button class="btn g" type="button" id="bw">Enviar por WhatsApp</button><button class="btn" type="button" id="bm">Enviar por correo</button></div>
+</form></section>
+
+<footer>© 2026 HEISTSENG · Perú · WhatsApp +51 982 572 162 · gisela.cuchupoma@gmail.com</footer>
+</div>
+
+<button id="fab" aria-label="Abrir chat">💬</button>
+<div id="chat" role="dialog" aria-label="Chat HEISTSENG">
+<div class="ch">Asistente HEISTSENG<small>Respuestas a preguntas frecuentes</small></div>
+<div id="msgs"></div>
+<div class="qs" id="qs"></div>
+<div class="cf"><input id="ci" placeholder="Escribe tu pregunta..." autocomplete="off"><button id="cs">Enviar</button></div>
+</div>
+
+<script>
+var WA="51982572162",MAIL="gisela.cuchupoma@gmail.com";
+function waLink(t){return "https://wa.me/"+WA+"?text="+encodeURIComponent(t)}
+function formText(){return "Hola HEISTSENG, soy "+v("n")+".\nTeléfono: "+v("t")+"\nCorreo: "+v("e")+"\nMensaje: "+v("s")}
+function v(i){return document.getElementById(i).value.trim()}
+function ok(){if(!v("n")||!(v("t")||v("e"))){alert("Por favor ingresa tu nombre y un teléfono o correo.");return false}return true}
+document.getElementById("bw").onclick=function(){if(ok())window.open(waLink(formText()),"_blank")};
+document.getElementById("bm").onclick=function(){if(ok())location.href="mailto:"+MAIL+"?subject="+encodeURIComponent("Consulta web - "+v("n"))+"&body="+encodeURIComponent(formText())};
+
+var FAQ=[
+{q:"¿Qué es HEISTSENG?",k:["quien","qué es","que es","empresa","heistseng"],a:"HEISTSENG es una empresa peruana dedicada a la venta de ferretería industrial, con productos de calidad y atención personalizada para empresas."},
+{q:"¿Qué productos venden?",k:["producto","venden","vende","servicio","ofrecen","catalogo","catálogo","cable","acero","izaje","eslinga","perno","fijacion","unistrut","accesorio"],a:"Vendemos:\n• Cables de acero\n• Accesorios para cable de acero\n• Elementos de izaje\n• Pernos y fijaciones\n• Sistemas Unistrut\nDinos qué necesitas y te cotizamos."},
+{q:"¿Cómo solicito una cotización?",k:["cotiza","presupuesto","precio","costo","cuanto","cuánto"],a:"Envíanos el producto, medidas y cantidad por WhatsApp al 982 572 162 o por el formulario de contacto. Te enviamos la cotización a la brevedad."},
+{q:"¿Dónde están ubicados?",k:["ubica","direcc","donde","dónde","local","oficina"],a:"Estamos en Perú y atendemos a nivel nacional. Escríbenos para coordinar una reunión o visita."},
+{q:"¿Cuál es el horario de atención?",k:["horario","hora","atienden","abierto"],a:"Atendemos de lunes a viernes de 8:00 a. m. a 6:00 p. m. y sábados de 9:00 a. m. a 1:00 p. m. Por WhatsApp respondemos lo antes posible."},
+{q:"¿Atienden en provincias?",k:["provincia","lima","cobertura","todo el per","nacional","envio","envío"],a:"Sí, enviamos a Lima y provincias. Los plazos y costos de envío varían según la zona."},
+{q:"¿Cuáles son los plazos de entrega?",k:["plazo","entrega","demora","tiempo","cuando","cuándo"],a:"Depende del producto y la cantidad. Si hay stock, la entrega es rápida; si es a pedido, te indicamos el plazo al cotizar."},
+{q:"¿Qué formas de pago aceptan?",k:["pago","pagar","transfer","yape","plin","tarjeta","efectivo"],a:"Aceptamos transferencia bancaria, depósito, Yape/Plin y otros medios a coordinar. Emitimos boleta o factura."},
+{q:"¿Emiten factura?",k:["factura","boleta","ruc","comprobante"],a:"Sí, emitimos factura y boleta electrónica. Solo envíanos tu RUC y razón social."},
+{q:"¿Cómo los contacto?",k:["contacto","contactar","telefono","teléfono","whatsapp","correo","email","llamar"],a:"WhatsApp: +51 982 572 162\nCorreo: gisela.cuchupoma@gmail.com\nTambién puedes usar el formulario de esta página."}
+];
+var box=document.getElementById("chat"),msgs=document.getElementById("msgs"),qs=document.getElementById("qs"),ci=document.getElementById("ci"),started=false;
+function add(t,c,html){var d=document.createElement("div");d.className="m "+c;if(html)d.innerHTML=t;else d.textContent=t;msgs.appendChild(d);msgs.scrollTop=msgs.scrollHeight}
+function norm(s){return s.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"")}
+function reply(i){add(FAQ[i].a,"b")}
+function fallback(txt){add('No tengo esa respuesta, pero un asesor te ayuda directo: <a href="'+waLink("Hola HEISTSENG, tengo una consulta: "+txt)+'" target="_blank" rel="noopener">enviar por WhatsApp</a> o <a href="mailto:'+MAIL+'?subject='+encodeURIComponent("Consulta web")+'&body='+encodeURIComponent(txt)+'">por correo</a>.',"b",true)}
+function ask(txt){
+ if(!txt)return;add(txt,"u");var n=norm(txt),best=-1,sc=0;
+ FAQ.forEach(function(f,i){var s=0;f.k.forEach(function(k){if(n.indexOf(norm(k))>-1)s++});if(s>sc){sc=s;best=i}});
+ setTimeout(function(){best>-1?reply(best):fallback(txt)},300);
+}
+FAQ.forEach(function(f){var b=document.createElement("button");b.textContent=f.q;b.onclick=function(){ask(f.q)};qs.appendChild(b)});
+document.getElementById("fab").onclick=function(){box.classList.toggle("on");if(!started){started=true;add("¡Hola! 👋 Soy el asistente de HEISTSENG. Elige una pregunta o escribe la tuya.","b")}};
+document.getElementById("cs").onclick=function(){var t=ci.value.trim();ci.value="";ask(t)};
+ci.onkeydown=function(e){if(e.key==="Enter"){var t=ci.value.trim();ci.value="";ask(t)}};
+</script>
+</body>
+</html>
