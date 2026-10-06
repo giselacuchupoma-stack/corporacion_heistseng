@@ -3,125 +3,159 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>HEISTSENG | Ferretería industrial en Perú</title>
+<title>HEISTSENG | Corporación Ferretera</title>
 <style>
-:root{--bg:#f7f8fa;--card:#fff;--tx:#14213d;--mut:#5b6575;--pri:#0b5fff;--acc:#e63946;--bd:#e2e6ec;--bot:#eef2f9;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0e1420;--card:#171f2e;--tx:#eef1f6;--mut:#9aa6b8;--pri:#5b8cff;--bd:#27324a;--bot:#202b40}}
-:root[data-theme="dark"]{--bg:#0e1420;--card:#171f2e;--tx:#eef1f6;--mut:#9aa6b8;--pri:#5b8cff;--bd:#27324a;--bot:#202b40}
+:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);
+--bg:#f5f6f8;--card:#fff;--ink:#14213d;--mut:#5b6577;--acc:#f26b1d;--navy:#0f1b33;--line:#e2e6ee}
+:root[data-theme="dark"]{--bg:#0b1220;--card:#131d33;--ink:#eef1f7;--mut:#9aa6bd;--line:#223052}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0b1220;--card:#131d33;--ink:#eef1f7;--mut:#9aa6bd;--line:#223052}}
 html{scroll-padding-top:env(safe-area-inset-top,0px);scroll-behavior:smooth}
 *{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--tx);font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;line-height:1.55}
-.w{max-width:1000px;margin:0 auto;padding:0 20px}
-header{display:flex;justify-content:space-between;align-items:center;padding:18px 0}
-.logo{font-weight:800;letter-spacing:.12em;font-size:1.25rem}.logo span{color:var(--acc)}
-nav a{color:var(--mut);text-decoration:none;margin-left:18px;font-size:.95rem}
-.hero{padding:56px 0 40px}
-.hero h1{font-size:clamp(2rem,6vw,3.2rem);line-height:1.1;margin:0 0 14px;max-width:700px}
-.hero p{color:var(--mut);max-width:560px;font-size:1.1rem}
-.btn{display:inline-block;background:var(--pri);color:#fff;border:0;padding:12px 22px;border-radius:10px;font-size:1rem;font-weight:600;cursor:pointer;text-decoration:none}
-.btn.g{background:#1faa59}.btn.o{background:transparent;color:var(--pri);border:1.5px solid var(--pri)}
-section{padding:36px 0}
-h2{margin:0 0 18px;font-size:1.6rem}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px}
-.card{background:var(--card);border:1px solid var(--bd);border-radius:14px;padding:20px}
-.card h3{margin:0 0 6px;font-size:1.05rem}.card p{margin:0;color:var(--mut);font-size:.95rem}
-form{display:grid;gap:12px;max-width:560px}
-input,textarea{width:100%;padding:12px;border-radius:10px;border:1px solid var(--bd);background:var(--card);color:var(--tx);font:inherit}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Segoe UI",system-ui,-apple-system,Arial,sans-serif;line-height:1.6}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:1100px;margin:auto;padding:0 20px}
+header{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--navy);color:#fff}
+.nav{display:flex;align-items:center;justify-content:space-between;height:64px}
+.logo{font-weight:800;letter-spacing:2px;font-size:20px}.logo b{color:var(--acc)}
+.nav nav{display:flex;gap:22px;font-size:14px}.nav nav a:hover{color:var(--acc)}
+.btn{display:inline-block;background:var(--acc);color:#fff;padding:12px 24px;border-radius:6px;font-weight:600;border:0;cursor:pointer;font-size:15px}
+.btn.o{background:transparent;border:2px solid #fff}
+.hero{background:linear-gradient(135deg,#0f1b33 55%,#1d3463);color:#fff;padding:90px 0 80px;position:relative;overflow:hidden}
+.hero:after{content:"";position:absolute;right:-80px;top:-80px;width:380px;height:380px;border:60px solid rgba(242,107,29,.18);transform:rotate(45deg)}
+.hero h1{font-size:clamp(30px,5vw,50px);line-height:1.15;margin:0 0 16px;max-width:720px}
+.hero h1 span{color:var(--acc)}
+.hero p{max-width:600px;color:#c9d3e8;font-size:18px;margin:0 0 28px}
+.hero .btn{margin-right:10px;margin-bottom:10px}
+section{padding:70px 0}
+h2{font-size:30px;margin:0 0 8px}h2+p{color:var(--mut);margin:0 0 32px}
+.tag{color:var(--acc);font-weight:700;font-size:13px;letter-spacing:2px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:24px;transition:.2s}
+.card:hover{transform:translateY(-4px);border-color:var(--acc)}
+.ic{width:46px;height:46px;border-radius:8px;background:var(--navy);color:var(--acc);display:grid;place-items:center;font-weight:800;margin-bottom:14px}
+.card h3{margin:0 0 6px;font-size:17px}.card p{margin:0;color:var(--mut);font-size:14px}
+.band{background:var(--navy);color:#fff}.band p{color:#c9d3e8!important}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:20px;text-align:center}
+.stats b{display:block;font-size:34px;color:var(--acc)}
+.two{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:30px}
+form{display:grid;gap:12px}
+input,textarea{width:100%;padding:12px;border:1px solid var(--line);border-radius:6px;background:var(--card);color:var(--ink);font:inherit}
 .row{display:flex;gap:10px;flex-wrap:wrap}
-footer{padding:28px 0 90px;color:var(--mut);font-size:.9rem;border-top:1px solid var(--bd);margin-top:30px}
+footer{background:var(--navy);color:#9fb0d0;padding:30px 0;font-size:14px;text-align:center}
 /* chatbot */
-#fab{position:fixed;right:18px;bottom:calc(18px + env(safe-area-inset-bottom,0px));width:58px;height:58px;border-radius:50%;background:var(--pri);color:#fff;border:0;font-size:26px;cursor:pointer;box-shadow:0 6px 20px rgba(0,0,0,.25);z-index:20}
-#chat{position:fixed;right:18px;bottom:calc(88px + env(safe-area-inset-bottom,0px));width:360px;max-width:calc(100vw - 36px);height:520px;max-height:calc(100% - 120px);background:var(--card);border:1px solid var(--bd);border-radius:16px;display:none;flex-direction:column;overflow:hidden;box-shadow:0 10px 40px rgba(0,0,0,.28);z-index:20}
+#fab{position:fixed;right:18px;bottom:calc(18px + env(safe-area-inset-bottom,0px));z-index:50;width:60px;height:60px;border-radius:50%;background:var(--acc);color:#fff;border:0;font-size:26px;cursor:pointer;box-shadow:0 6px 20px rgba(0,0,0,.3)}
+#chat{position:fixed;right:18px;bottom:calc(88px + env(safe-area-inset-bottom,0px));z-index:50;width:360px;max-width:calc(100% - 36px);height:520px;max-height:calc(100% - 120px);background:var(--card);border:1px solid var(--line);border-radius:14px;display:none;flex-direction:column;overflow:hidden;box-shadow:0 12px 40px rgba(0,0,0,.35)}
 #chat.on{display:flex}
-.ch{background:var(--pri);color:#fff;padding:12px 16px;font-weight:700}
-.ch small{display:block;font-weight:400;opacity:.85}
-#msgs{flex:1;overflow-y:auto;padding:12px;display:flex;flex-direction:column;gap:8px}
-.m{padding:9px 12px;border-radius:12px;max-width:88%;font-size:.93rem;white-space:pre-line}
-.m.b{background:var(--bot);align-self:flex-start}.m.u{background:var(--pri);color:#fff;align-self:flex-end}
-.qs{display:flex;flex-wrap:wrap;gap:6px;padding:0 12px 8px;max-height:112px;overflow-y:auto}
-.qs button{background:transparent;border:1px solid var(--pri);color:var(--pri);border-radius:16px;padding:5px 10px;font-size:.8rem;cursor:pointer}
-.cf{display:flex;border-top:1px solid var(--bd)}
-.cf input{border:0;border-radius:0}.cf button{border:0;background:var(--pri);color:#fff;padding:0 16px;cursor:pointer}
-.m a{color:inherit;font-weight:700}
+.ch{background:var(--navy);color:#fff;padding:14px 16px;font-weight:600}.ch small{display:block;font-weight:400;color:#9fb0d0}
+#msgs{flex:1;overflow-y:auto;padding:14px;display:flex;flex-direction:column;gap:8px}
+.m{max-width:85%;padding:9px 13px;border-radius:12px;font-size:14px;white-space:pre-line}
+.b{background:var(--bg);align-self:flex-start}.u{background:var(--acc);color:#fff;align-self:flex-end}
+.qs{display:flex;flex-wrap:wrap;gap:6px;padding:8px 12px;border-top:1px solid var(--line);max-height:132px;overflow-y:auto}
+.qs button{background:transparent;border:1px solid var(--acc);color:var(--acc);border-radius:16px;padding:5px 10px;font-size:12px;cursor:pointer}
+.qs button:hover{background:var(--acc);color:#fff}
+.in{display:flex;border-top:1px solid var(--line)}.in input{border:0;border-radius:0}.in button{background:var(--acc);color:#fff;border:0;padding:0 16px;cursor:pointer}
+.act{display:flex;gap:6px;flex-wrap:wrap;align-self:flex-start}
+.act a{background:#25a244;color:#fff;padding:7px 12px;border-radius:6px;font-size:13px}.act a.e{background:var(--navy)}
+@media(max-width:700px){.nav nav a:not(.btn){display:none}}
 </style>
 </head>
 <body>
-<div class="w">
-<header><div class="logo">HEIST<span>SENG</span></div>
-<nav><a href="#servicios">Productos</a><a href="#contacto">Contacto</a></nav></header>
+<header><div class="wrap nav">
+  <div class="logo">HEIST<b>SENG</b></div>
+  <nav><a href="#productos">Productos</a><a href="#clientes">Clientes</a><a href="#envios">Envíos</a><a href="#contacto">Contacto</a><a class="btn" style="padding:8px 16px" href="#contacto">Cotizar</a></nav>
+</div></header>
 
-<div class="hero">
-<h1>Ferretería industrial para izaje, fijación y estructuras</h1>
-<p>Cables de acero, accesorios, elementos de izaje, pernos y sistemas Unistrut. Productos de calidad con atención rápida a empresas de todo el Perú.</p>
-<p><a class="btn g" href="https://wa.me/51982572162?text=Hola%20HEISTSENG%2C%20quisiera%20m%C3%A1s%20informaci%C3%B3n" target="_blank" rel="noopener">Escríbenos por WhatsApp</a>
-<a class="btn o" href="#contacto">Solicitar cotización</a></p>
-</div>
+<div class="hero"><div class="wrap">
+  <div class="tag">CORPORACIÓN FERRETERA · PERÚ</div>
+  <h1>Distribuidores de ferretería <span>al por mayor y menor</span></h1>
+  <p>Ángulos, tornillos, pernos, abrazaderas, platina doble, colgador de cuadro y gancho trupan. Calidad, stock y envíos a todo el Perú.</p>
+  <a class="btn" href="#contacto">Solicitar cotización</a><a class="btn o" href="#productos">Ver productos</a>
+</div></div>
 
-<section id="servicios"><h2>Nuestros productos</h2>
-<div class="grid">
-<div class="card"><h3>🪢 Cables de acero</h3><p>Diversas construcciones y diámetros para izaje, tracción y uso industrial.</p></div>
-<div class="card"><h3>🔗 Accesorios para cable de acero</h3><p>Grilletes, perrillos, guardacabos, tensores, mordazas y más.</p></div>
-<div class="card"><h3>🏗️ Elementos de izaje</h3><p>Eslingas, cadenas, ganchos, polipastos y accesorios para elevación de carga.</p></div>
-<div class="card"><h3>🔩 Pernos y fijaciones</h3><p>Pernos, tuercas, arandelas, anclajes y fijaciones para uso industrial.</p></div>
-<div class="card"><h3>📐 Sistemas Unistrut</h3><p>Canales, soportes y accesorios para estructuras y montajes eléctricos y mecánicos.</p></div>
+<section class="band" style="padding:36px 0"><div class="wrap stats">
+  <div><b>Mayor y menor</b>Venta flexible</div><div><b>Lima</b>y provincias</div><div><b>7</b>líneas de producto</div><div><b>Stock</b>permanente</div>
 </div></section>
 
-<section id="contacto"><h2>Contáctanos</h2>
-<p style="color:var(--mut);margin-top:-8px">Completa tus datos y envíalos directo por WhatsApp o por correo.</p>
-<form id="f" onsubmit="return false">
-<input id="n" placeholder="Tu nombre" required>
-<input id="t" placeholder="Tu teléfono / WhatsApp" inputmode="tel">
-<input id="e" type="email" placeholder="Tu correo">
-<textarea id="s" rows="4" placeholder="¿Qué productos necesitas? (medidas, cantidades)"></textarea>
-<div class="row"><button class="btn g" type="button" id="bw">Enviar por WhatsApp</button><button class="btn" type="button" id="bm">Enviar por correo</button></div>
-</form></section>
+<section id="productos"><div class="wrap">
+  <div class="tag">CATÁLOGO</div><h2>Nuestros productos</h2><p>Todo lo que necesitas para tu obra, taller o ferretería.</p>
+  <div class="grid">
+    <div class="card"><div class="ic">AB</div><h3>Abrazaderas</h3><p>Sujeción segura para tuberías y estructuras.</p></div>
+    <div class="card"><div class="ic">TO</div><h3>Tornillos</h3><p>Variedad de tipos y medidas para cada trabajo.</p></div>
+    <div class="card"><div class="ic">AN</div><h3>Ángulos</h3><p>Ángulo pesado, negro reforzado y para cama.</p></div>
+    <div class="card"><div class="ic">PI</div><h3>Pernos inox</h3><p>Acero inoxidable resistente a la corrosión.</p></div>
+    <div class="card"><div class="ic">PO</div><h3>Poleas</h3><p>Para sistemas de izaje y tracción.</p></div>
+    <div class="card"><div class="ic">TR</div><h3>Trupan</h3><p>Ganchos y accesorios para trupan.</p></div>
+    <div class="card"><div class="ic">CA</div><h3>Cables de acero</h3><p>Resistencia para carga y seguridad.</p></div>
+  </div>
+</div></section>
 
-<footer>© 2026 HEISTSENG · Perú · WhatsApp +51 982 572 162 · gisela.cuchupoma@gmail.com</footer>
-</div>
+<section id="clientes" style="background:var(--card)"><div class="wrap">
+  <div class="tag">CONFIANZA</div><h2>Nuestros clientes</h2><p>Abastecemos a quienes trabajan todos los días con ferretería.</p>
+  <div class="grid">
+    <div class="card"><h3>Ferreterías</h3><p>Reposición constante para tu negocio.</p></div>
+    <div class="card"><h3>Empresas abastecedoras y de servicio</h3><p>Suministros para operación y mantenimiento.</p></div>
+    <div class="card"><h3>Fabricantes de muebles</h3><p>Ángulos, tornillería y accesorios para producción.</p></div>
+  </div>
+</div></section>
 
-<button id="fab" aria-label="Abrir chat">💬</button>
-<div id="chat" role="dialog" aria-label="Chat HEISTSENG">
-<div class="ch">Asistente HEISTSENG<small>Respuestas a preguntas frecuentes</small></div>
-<div id="msgs"></div>
-<div class="qs" id="qs"></div>
-<div class="cf"><input id="ci" placeholder="Escribe tu pregunta..." autocomplete="off"><button id="cs">Enviar</button></div>
+<section id="envios"><div class="wrap two">
+  <div><div class="tag">LOGÍSTICA</div><h2>Se hacen envíos</h2><p style="margin:0">Despachamos a <b>Lima</b> y a <b>provincias</b>. Coordina tu pedido por WhatsApp y recibe tu mercadería donde la necesites.</p></div>
+  <div class="card"><h3>¿Cómo pedir?</h3><p>1. Cuéntanos qué necesitas.<br>2. Recibe tu cotización.<br>3. Coordina pago y envío.</p></div>
+</div></section>
+
+<section id="contacto" class="band"><div class="wrap two">
+  <div><div class="tag">CONTACTO</div><h2>Pide tu cotización</h2><p>Completa el formulario y envíalo por WhatsApp o correo.</p>
+    <p>WhatsApp: <b>982 572 162</b><br>Correo: <b>gisela.cuchupoma@gmail.com</b></p></div>
+  <form id="f" onsubmit="return false">
+    <input id="fn" placeholder="Nombre / Empresa"><input id="ft" placeholder="Teléfono"><textarea id="fm" rows="4" placeholder="¿Qué productos necesitas? Cantidades y medidas"></textarea>
+    <div class="row"><button class="btn" style="background:#25a244" onclick="sendWA(val())">Enviar por WhatsApp</button><button class="btn o" onclick="sendMail(val())">Enviar por correo</button></div>
+  </form>
+</div></section>
+
+<footer>© 2026 HEISTSENG · Corporación Ferretera Heistseng S.A.C. · Perú</footer>
+
+<button id="fab" aria-label="Abrir chat" onclick="tog()">💬</button>
+<div id="chat"><div class="ch">Asistente HEISTSENG<small>Respuestas rápidas · en línea</small></div>
+  <div id="msgs"></div><div class="qs" id="qs"></div>
+  <div class="in"><input id="ci" placeholder="Escribe tu pregunta..."><button onclick="ask()">➤</button></div>
 </div>
 
 <script>
-var WA="51982572162",MAIL="gisela.cuchupoma@gmail.com";
-function waLink(t){return "https://wa.me/"+WA+"?text="+encodeURIComponent(t)}
-function formText(){return "Hola HEISTSENG, soy "+v("n")+".\nTeléfono: "+v("t")+"\nCorreo: "+v("e")+"\nMensaje: "+v("s")}
-function v(i){return document.getElementById(i).value.trim()}
-function ok(){if(!v("n")||!(v("t")||v("e"))){alert("Por favor ingresa tu nombre y un teléfono o correo.");return false}return true}
-document.getElementById("bw").onclick=function(){if(ok())window.open(waLink(formText()),"_blank")};
-document.getElementById("bm").onclick=function(){if(ok())location.href="mailto:"+MAIL+"?subject="+encodeURIComponent("Consulta web - "+v("n"))+"&body="+encodeURIComponent(formText())};
-
-var FAQ=[
-{q:"¿Qué es HEISTSENG?",k:["quien","qué es","que es","empresa","heistseng"],a:"HEISTSENG es una empresa peruana dedicada a la venta de ferretería industrial, con productos de calidad y atención personalizada para empresas."},
-{q:"¿Qué productos venden?",k:["producto","venden","vende","servicio","ofrecen","catalogo","catálogo","cable","acero","izaje","eslinga","perno","fijacion","unistrut","accesorio"],a:"Vendemos:\n• Cables de acero\n• Accesorios para cable de acero\n• Elementos de izaje\n• Pernos y fijaciones\n• Sistemas Unistrut\nDinos qué necesitas y te cotizamos."},
-{q:"¿Cómo solicito una cotización?",k:["cotiza","presupuesto","precio","costo","cuanto","cuánto"],a:"Envíanos el producto, medidas y cantidad por WhatsApp al 982 572 162 o por el formulario de contacto. Te enviamos la cotización a la brevedad."},
-{q:"¿Dónde están ubicados?",k:["ubica","direcc","donde","dónde","local","oficina"],a:"Estamos en Perú y atendemos a nivel nacional. Escríbenos para coordinar una reunión o visita."},
-{q:"¿Cuál es el horario de atención?",k:["horario","hora","atienden","abierto"],a:"Atendemos de lunes a viernes de 8:00 a. m. a 6:00 p. m. y sábados de 9:00 a. m. a 1:00 p. m. Por WhatsApp respondemos lo antes posible."},
-{q:"¿Atienden en provincias?",k:["provincia","lima","cobertura","todo el per","nacional","envio","envío"],a:"Sí, enviamos a Lima y provincias. Los plazos y costos de envío varían según la zona."},
-{q:"¿Cuáles son los plazos de entrega?",k:["plazo","entrega","demora","tiempo","cuando","cuándo"],a:"Depende del producto y la cantidad. Si hay stock, la entrega es rápida; si es a pedido, te indicamos el plazo al cotizar."},
-{q:"¿Qué formas de pago aceptan?",k:["pago","pagar","transfer","yape","plin","tarjeta","efectivo"],a:"Aceptamos transferencia bancaria, depósito, Yape/Plin y otros medios a coordinar. Emitimos boleta o factura."},
-{q:"¿Emiten factura?",k:["factura","boleta","ruc","comprobante"],a:"Sí, emitimos factura y boleta electrónica. Solo envíanos tu RUC y razón social."},
-{q:"¿Cómo los contacto?",k:["contacto","contactar","telefono","teléfono","whatsapp","correo","email","llamar"],a:"WhatsApp: +51 982 572 162\nCorreo: gisela.cuchupoma@gmail.com\nTambién puedes usar el formulario de esta página."}
+const WA="51982572162",MAIL="gisela.cuchupoma@gmail.com";
+const FAQ=[
+["¿Qué productos venden?","Distribuimos ángulos, tornillos, pernos inox, abrazaderas, poleas, trupan y cables de acero, además de platina doble y colgador de cuadro.",["producto","venden","catalogo","tienen"]],
+["¿Venden al por mayor y menor?","Sí. Somos distribuidores de ferretería al por mayor y al por menor.",["mayor","menor","mayorista","unidad"]],
+["¿Qué tipos de ángulos tienen?","Ángulo pesado, ángulo negro reforzado y ángulo para cama. Escríbenos la medida que buscas y confirmamos stock.",["angulo","ángulo","cama"]],
+["¿Cómo puedo cotizar?","Déjame tus datos aquí mismo o usa el formulario de la web. Te responderemos por WhatsApp con tu cotización. Escribe \"cotizar\".",["cotiz","precio","costo","cuanto","cuánto","pago"]],
+["¿Hacen envíos a provincia?","Sí, hacemos envíos a provincias. Coordina destino y forma de envío por WhatsApp.",["provincia","interior"]],
+["¿Hacen envíos en Lima?","Sí, realizamos envíos en Lima. Indícanos tu distrito al cotizar.",["lima","delivery","envio","envío","despacho"]],
+["¿Tienen cables de acero y poleas?","Sí, manejamos cables de acero y poleas. Indícanos diámetro y cantidad para cotizarte.",["cable","polea","acero"]],
+["¿Tienen pernos de acero inoxidable?","Sí, contamos con pernos inox. Cuéntanos medida y cantidad.",["perno","inox","tornillo"]],
+["¿Atienden a fabricantes de muebles?","Sí, atendemos a fabricantes de muebles, ferreterías y empresas abastecedoras y de servicio.",["mueble","fabric","cliente","empresa","ferreter"]],
+["¿Cómo los contacto?","WhatsApp: 982 572 162\nCorreo: gisela.cuchupoma@gmail.com\nTambién puedes dejar tu consulta aquí.",["contacto","whatsapp","correo","telefono","teléfono","horario","donde","dónde"]]
 ];
-var box=document.getElementById("chat"),msgs=document.getElementById("msgs"),qs=document.getElementById("qs"),ci=document.getElementById("ci"),started=false;
-function add(t,c,html){var d=document.createElement("div");d.className="m "+c;if(html)d.innerHTML=t;else d.textContent=t;msgs.appendChild(d);msgs.scrollTop=msgs.scrollHeight}
-function norm(s){return s.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"")}
-function reply(i){add(FAQ[i].a,"b")}
-function fallback(txt){add('No tengo esa respuesta, pero un asesor te ayuda directo: <a href="'+waLink("Hola HEISTSENG, tengo una consulta: "+txt)+'" target="_blank" rel="noopener">enviar por WhatsApp</a> o <a href="mailto:'+MAIL+'?subject='+encodeURIComponent("Consulta web")+'&body='+encodeURIComponent(txt)+'">por correo</a>.',"b",true)}
-function ask(txt){
- if(!txt)return;add(txt,"u");var n=norm(txt),best=-1,sc=0;
- FAQ.forEach(function(f,i){var s=0;f.k.forEach(function(k){if(n.indexOf(norm(k))>-1)s++});if(s>sc){sc=s;best=i}});
- setTimeout(function(){best>-1?reply(best):fallback(txt)},300);
-}
-FAQ.forEach(function(f){var b=document.createElement("button");b.textContent=f.q;b.onclick=function(){ask(f.q)};qs.appendChild(b)});
-document.getElementById("fab").onclick=function(){box.classList.toggle("on");if(!started){started=true;add("¡Hola! 👋 Soy el asistente de HEISTSENG. Elige una pregunta o escribe la tuya.","b")}};
-document.getElementById("cs").onclick=function(){var t=ci.value.trim();ci.value="";ask(t)};
-ci.onkeydown=function(e){if(e.key==="Enter"){var t=ci.value.trim();ci.value="";ask(t)}};
+const $=id=>document.getElementById(id);let step=0,lead={};
+function add(t,c){const d=document.createElement("div");d.className="m "+c;d.textContent=t;$("msgs").appendChild(d);$("msgs").scrollTop=1e9}
+function tog(){$("chat").classList.toggle("on");if(!$("msgs").children.length){add("¡Hola! Soy el asistente de HEISTSENG 👷 Elige una pregunta o escribe la tuya.","b")}}
+$("qs").innerHTML=FAQ.map((f,i)=>`<button onclick="pick(${i})">${f[0].replace(/[¿?]/g,"")}</button>`).join("")+`<button onclick="startLead()">📩 Enviar consulta</button>`;
+function pick(i){add(FAQ[i][0],"u");add(FAQ[i][1],"b")}
+function ask(){const t=$("ci").value.trim();if(!t)return;$("ci").value="";add(t,"u");
+ if(step){return lf(t)}
+ const q=t.toLowerCase();if(/cotiz|consulta|asesor|pedido/.test(q))return startLead();
+ let best=-1,sc=0;FAQ.forEach((f,i)=>{const s=f[2].filter(k=>q.includes(k)).length;if(s>sc){sc=s;best=i}});
+ if(best>=0)add(FAQ[best][1],"b");else{add("No tengo esa respuesta, pero un asesor puede ayudarte. Te tomo tus datos para enviarlos por WhatsApp.","b");startLead()}}
+function startLead(){step=1;lead={};add("¿Cuál es tu nombre o empresa?","b")}
+function lf(t){if(step==1){lead.n=t;step=2;add("¿Tu número de teléfono?","b")}
+ else if(step==2){lead.t=t;step=3;add("¿Qué necesitas? (producto, medida, cantidad)","b")}
+ else{lead.m=t;step=0;add("¡Gracias! Envía tu consulta con un clic:","b");
+  const d=document.createElement("div");d.className="act";
+  d.innerHTML=`<a href="${wa(lead)}" target="_blank" rel="noopener">WhatsApp</a><a class="e" href="${ml(lead)}">Correo</a>`;$("msgs").appendChild(d);$("msgs").scrollTop=1e9}}
+const txt=l=>`Hola HEISTSENG, soy ${l.n}.\nTeléfono: ${l.t}\nConsulta: ${l.m}`;
+const wa=l=>`https://wa.me/${WA}?text=${encodeURIComponent(txt(l))}`;
+const ml=l=>`mailto:${MAIL}?subject=${encodeURIComponent("Consulta web HEISTSENG - "+l.n)}&body=${encodeURIComponent(txt(l))}`;
+const val=()=>({n:$("fn").value||"cliente",t:$("ft").value||"-",m:$("fm").value||"-"});
+function sendWA(l){window.open(wa(l),"_blank")}function sendMail(l){location.href=ml(l)}
+$("ci").addEventListener("keydown",e=>{if(e.key==="Enter")ask()});
 </script>
 </body>
 </html>
