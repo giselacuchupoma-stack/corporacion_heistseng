@@ -114,14 +114,22 @@ footer{background:var(--navy);color:#9fb0d0;padding:30px 0;font-size:14px;text-a
 
 <footer>© 2026 HEISTSENG · Corporación Ferretera Heistseng S.A.C. · Perú</footer>
 
-<button id="fab" aria-label="Abrir chat" onclick="tog()">💬</button>
-<div id="chat"><div class="ch">Asistente HEISTSENG<small>Respuestas rápidas · en línea</small></div>
+<button id="fab" aria-label="Abrir chat" onclick="tog()">✨</button>
+<div id="chat"><div class="ch">✨ Asistente HEISTSENG<small>Respuestas rápidas · en línea</small></div>
   <div id="msgs"></div><div class="qs" id="qs"></div>
   <div class="in"><input id="ci" placeholder="Escribe tu pregunta..."><button onclick="ask()">➤</button></div>
 </div>
 
 <script>
 const WA="51982572162",MAIL="gisela.cuchupoma@gmail.com";
+const N8N="https://gisela.app.n8n.cloud/webhook/dc3e30c3-10d4-47dd-bea3-d8bcde9df03e/chat";
+const SID=(crypto.randomUUID?crypto.randomUUID():String(Date.now())+Math.random());
+async function n8n(text){
+ const r=await fetch(N8N,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({action:"sendMessage",sessionId:SID,chatInput:text})});
+ if(!r.ok)throw new Error(r.status);
+ const d=await r.json();
+ return d.output||d.text||d.message||(Array.isArray(d)&&d[0]&&(d[0].output||d[0].text))||"";
+}
 const FAQ=[
 ["¿Qué productos venden?","Distribuimos ángulos, tornillos, pernos inox, abrazaderas, poleas, trupan y cables de acero, además de platina doble y colgador de cuadro.",["producto","venden","catalogo","tienen"]],
 ["¿Venden al por mayor y menor?","Sí. Somos distribuidores de ferretería al por mayor y al por menor.",["mayor","menor","mayorista","unidad"]],
@@ -136,18 +144,21 @@ const FAQ=[
 ];
 const $=id=>document.getElementById(id);let step=0,lead={};
 function add(t,c){const d=document.createElement("div");d.className="m "+c;d.textContent=t;$("msgs").appendChild(d);$("msgs").scrollTop=1e9}
-function tog(){$("chat").classList.toggle("on");if(!$("msgs").children.length){add("¡Hola! Soy el asistente de HEISTSENG 👷 Elige una pregunta o escribe la tuya.","b")}}
-$("qs").innerHTML=FAQ.map((f,i)=>`<button onclick="pick(${i})">${f[0].replace(/[¿?]/g,"")}</button>`).join("")+`<button onclick="startLead()">📩 Enviar consulta</button>`;
+function tog(){$("chat").classList.toggle("on");if(!$("msgs").children.length){add("¡Hola! Soy el asistente de HEISTSENG ✨ Elige una pregunta o escribe la tuya.","b")}}
+$("qs").innerHTML=FAQ.map((f,i)=>`<button onclick="pick(${i})">${f[0].replace(/[¿?]/g,"")}</button>`).join("")+`<button onclick="startLead()">✉️ Enviar consulta</button>`;
 function pick(i){add(FAQ[i][0],"u");add(FAQ[i][1],"b")}
 function ask(){const t=$("ci").value.trim();if(!t)return;$("ci").value="";add(t,"u");
  if(step){return lf(t)}
  const q=t.toLowerCase();if(/cotiz|consulta|asesor|pedido/.test(q))return startLead();
  let best=-1,sc=0;FAQ.forEach((f,i)=>{const s=f[2].filter(k=>q.includes(k)).length;if(s>sc){sc=s;best=i}});
- if(best>=0)add(FAQ[best][1],"b");else{add("No tengo esa respuesta, pero un asesor puede ayudarte. Te tomo tus datos para enviarlos por WhatsApp.","b");startLead()}}
+ const local=best>=0?FAQ[best][1]:null;
+ add("✨ Escribiendo...","b");const tp=$("msgs").lastChild;
+ n8n(t).then(o=>{tp.remove();if(o)add(o,"b");else if(local)add(local,"b");else fb()}).catch(()=>{tp.remove();if(local)add(local,"b");else fb()})}
+function fb(){add("No tengo esa respuesta, pero un asesor puede ayudarte. Te tomo tus datos para enviarlos por WhatsApp.","b");startLead()}
 function startLead(){step=1;lead={};add("¿Cuál es tu nombre o empresa?","b")}
 function lf(t){if(step==1){lead.n=t;step=2;add("¿Tu número de teléfono?","b")}
  else if(step==2){lead.t=t;step=3;add("¿Qué necesitas? (producto, medida, cantidad)","b")}
- else{lead.m=t;step=0;add("¡Gracias! Envía tu consulta con un clic:","b");
+ else{lead.m=t;step=0;n8n("NUEVA CONSULTA WEB\n"+txt(lead)).catch(()=>{});add("¡Gracias! Envía tu consulta con un clic:","b");
   const d=document.createElement("div");d.className="act";
   d.innerHTML=`<a href="${wa(lead)}" target="_blank" rel="noopener">WhatsApp</a><a class="e" href="${ml(lead)}">Correo</a>`;$("msgs").appendChild(d);$("msgs").scrollTop=1e9}}
 const txt=l=>`Hola HEISTSENG, soy ${l.n}.\nTeléfono: ${l.t}\nConsulta: ${l.m}`;
