@@ -20,8 +20,8 @@ section{padding:70px 22px}.wrap{max-width:1180px;margin:auto}.section-head{text-
 .contact-grid{display:grid;grid-template-columns:.8fr 1.2fr;gap:35px}.contact-info{background:var(--navy);color:#fff;border-radius:14px;padding:30px}.contact-info h3{font-size:25px;margin-top:0}.contact-info p{color:#dce7ef}.contact-line{margin-top:23px}.contact-line small{display:block;color:#a9c0d2;text-transform:uppercase;letter-spacing:1px;font-size:11px}.contact-line a{color:#fff;text-decoration:none;font-weight:700;overflow-wrap:anywhere}.form{border:1px solid #e0e6ec;padding:28px;border-radius:14px}.form h3{margin-top:0;color:var(--navy)}.fields{display:grid;grid-template-columns:1fr 1fr;gap:15px}.field{display:flex;flex-direction:column;gap:6px}.field.full{grid-column:1/-1}label{font-size:13px;font-weight:700}input,select,textarea{font:inherit;border:1px solid #d3dce5;border-radius:6px;padding:12px;width:100%;background:#fff}textarea{min-height:115px;resize:vertical}.note{font-size:12px;color:var(--muted)}
 footer{background:#091827;color:#d7e0e8;padding:27px 22px}.footer-inner{max-width:1180px;margin:auto;display:flex;justify-content:space-between;gap:15px;flex-wrap:wrap;font-size:13px}
 .whatsapp-float{position:fixed;right:20px;bottom:20px;z-index:20;background:#20b65a;color:#fff;text-decoration:none;padding:13px 18px;border-radius:50px;font-weight:800;box-shadow:0 6px 22px #0003;display:flex;align-items:center;gap:8px}
-.chat-launch{position:fixed;right:20px;bottom:85px;z-index:30;border:0;border-radius:50px;background:var(--orange);color:#14283b;font-weight:900;padding:13px 18px;box-shadow:0 6px 22px #0003;cursor:pointer}.chat-window{position:fixed;right:20px;bottom:140px;width:min(365px,calc(100vw - 30px));height:490px;max-height:calc(100vh - 175px);background:#fff;border-radius:15px;box-shadow:0 12px 50px #0004;z-index:31;display:none;overflow:hidden;border:1px solid #dce3e9}.chat-window.open{display:flex;flex-direction:column}.chat-head{background:var(--navy);color:#fff;padding:16px;display:flex;justify-content:space-between;align-items:center}.chat-head strong{display:block}.chat-head small{color:#c9d8e4}.chat-close{background:transparent;border:0;color:#fff;font-size:24px;cursor:pointer}.chat-body{padding:15px;overflow:auto;flex:1;background:#f5f7f9}.bubble{padding:11px 13px;border-radius:12px;margin:0 0 12px;max-width:94%;font-size:13px;white-space:pre-wrap}.bot{background:#fff;border:1px solid #e0e6ec}.user{background:#dceefb;margin-left:auto}.faq-list{display:grid;gap:7px;margin-top:10px}.faq-btn{border:1px solid #cbd8e3;background:#fff;color:var(--navy);padding:9px 10px;border-radius:8px;text-align:left;cursor:pointer;font-size:12px}.faq-btn:hover{background:#eaf2f8}.chat-bottom{padding:10px;border-top:1px solid #e0e6ec;display:flex;gap:7px}.chat-bottom input{padding:10px;font-size:13px}.chat-bottom button{border:0;background:var(--blue);color:#fff;border-radius:7px;padding:0 13px;cursor:pointer}
-@media(max-width:800px){nav{gap:12px;flex-wrap:wrap;justify-content:flex-end}nav a:not(.btn){display:none}.hero-inner{grid-template-columns:1fr;padding-top:55px}.hero-art{min-height:250px}.gear{width:190px;height:190px}.gear:before{width:135px;height:135px}.gear span{font-size:32px}.trust-inner{grid-template-columns:1fr}.cards{grid-template-columns:1fr 1fr}.about-grid,.contact-grid{grid-template-columns:1fr}}
+.chat-launch{position:fixed;right:20px;bottom:85px;z-index:30;border:0;border-radius:50px;background:var(--orange);color:#14283b;font-weight:900;font-size:15px;padding:14px 20px;box-shadow:0 6px 22px #0003;cursor:pointer}.chat-window{position:fixed;right:20px;bottom:140px;width:min(365px,calc(100vw - 30px));height:490px;max-height:calc(100vh - 175px);background:#fff;border-radius:15px;box-shadow:0 12px 50px #0004;z-index:9999;display:none;overflow:hidden;border:1px solid #dce3e9;box-sizing:border-box}.chat-window.open{display:flex;flex-direction:column;min-height:260px}.chat-head{background:var(--navy);color:#fff;padding:16px;display:flex;justify-content:space-between;align-items:center}.chat-head strong{display:block}.chat-head small{color:#c9d8e4}.chat-close{background:transparent;border:0;color:#fff;font-size:24px;cursor:pointer}.chat-body{padding:15px;overflow-y:auto;overflow-x:hidden;flex:1 1 auto;min-height:0;background:#f5f7f9;overscroll-behavior:contain}.bubble{padding:11px 13px;border-radius:12px;margin:0 0 12px;max-width:94%;font-size:13px;white-space:pre-wrap}.bot{background:#fff;border:1px solid #e0e6ec}.user{background:#dceefb;margin-left:auto}.faq-list{display:grid;gap:7px;margin-top:10px}.faq-btn{border:1px solid #cbd8e3;background:#fff;color:var(--navy);padding:9px 10px;border-radius:8px;text-align:left;cursor:pointer;font-size:12px}.faq-btn:hover{background:#eaf2f8}.chat-bottom{padding:10px;border-top:1px solid #e0e6ec;display:flex;gap:7px;flex:0 0 auto;background:#fff;box-sizing:border-box;position:relative;z-index:2}.chat-bottom input{display:block;flex:1 1 auto;min-width:0;width:100%;padding:12px 10px;font-size:14px;line-height:1.3;border:1px solid #aebdca;border-radius:8px;background:#fff;color:#14283b;outline:none;box-sizing:border-box;pointer-events:auto}.chat-bottom input:focus{border-color:#1d527d;box-shadow:0 0 0 2px #1d527d22}.chat-bottom button{flex:0 0 auto;border:0;background:var(--blue);color:#fff;border-radius:7px;padding:0 15px;cursor:pointer;min-height:42px}
+@media(max-width:800px){.chat-window{right:10px;bottom:130px;width:calc(100vw - 20px);max-height:calc(100dvh - 150px)}.chat-launch{right:12px;bottom:75px}.chat-bottom input{font-size:16px}nav{gap:12px;flex-wrap:wrap;justify-content:flex-end}nav a:not(.btn){display:none}.hero-inner{grid-template-columns:1fr;padding-top:55px}.hero-art{min-height:250px}.gear{width:190px;height:190px}.gear:before{width:135px;height:135px}.gear span{font-size:32px}.trust-inner{grid-template-columns:1fr}.cards{grid-template-columns:1fr 1fr}.about-grid,.contact-grid{grid-template-columns:1fr}}
 @media(max-width:520px){.cards{grid-template-columns:1fr}.fields{grid-template-columns:1fr}.field.full{grid-column:auto}.hero h1{font-size:36px}.brand strong{font-size:13px}.logo{width:40px;height:40px}.nav{padding:12px 15px}.hero-inner{padding-left:18px;padding-right:18px}section{padding:52px 17px}.chat-launch{right:13px;bottom:80px}.whatsapp-float{right:13px;bottom:17px}}
 </style>
 </head>
@@ -61,9 +61,9 @@ footer{background:#091827;color:#d7e0e8;padding:27px 22px}.footer-inner{max-widt
 </div></form></div></div></section>
 </main>
 <footer><div class="footer-inner"><span>© <span id="year"></span> Corporación Ferretera Heistseng. Todos los derechos reservados.</span><span>Ferretería industrial · Perú</span></div></footer>
-<button class="chat-launch" id="chatLaunch" aria-label="Abrir asistente virtual">💬 ¿Necesitas ayuda?</button>
+<button class="chat-launch" id="chatLaunch" aria-label="Abrir chatbot de ventas" title="Abrir asistente virtual">🤖💬 Chat de ventas</button>
 <div class="chat-window" id="chatWindow" role="dialog" aria-label="Chat de atención al cliente">
-<div class="chat-head"><div><strong>Asistente Heistseng</strong><small>Respuestas rápidas · Ferretería industrial</small></div><button class="chat-close" id="chatClose" aria-label="Cerrar chat">×</button></div>
+<div class="chat-head"><div><strong>🤖 Asistente Heistseng</strong><small>Asistente conectado a n8n · Ferretería industrial</small></div><button class="chat-close" id="chatClose" aria-label="Cerrar chat">×</button></div>
 <div class="chat-body" id="chatBody"><div class="bubble bot">¡Hola! 👋 Soy el asistente virtual de Corporación Ferretera Heistseng. Puedo ayudarte con preguntas frecuentes. Elige una pregunta:</div><div class="faq-list" id="faqList"></div></div>
 <div class="chat-bottom"><input id="chatInput" placeholder="Escribe tu consulta..." aria-label="Escribe tu consulta"><button id="chatSend">Enviar</button></div>
 </div>
@@ -71,6 +71,8 @@ footer{background:#091827;color:#d7e0e8;padding:27px 22px}.footer-inner{max-widt
 <script>
 const WHATSAPP = "51982572162";
 const EMAIL = "gisela.cuchupoma@gmail.com";
+const N8N_CHAT_WEBHOOK = "https://gisela.app.n8n.cloud/webhook/heistseng-ventas-chat/chat";
+const CHAT_SESSION_ID = "heistseng-" + (function(){ try { let k="heistsengChatSession"; let v=localStorage.getItem(k); if(!v){v="sess-"+Date.now()+"-"+Math.random().toString(36).slice(2,10);localStorage.setItem(k,v);} return v; } catch(e) { return "sess-"+Date.now(); } })();
 const faqs = [
 ["¿Qué productos venden?","Ofrecemos líneas de ferretería industrial como pernos y fijaciones, cables de acero y accesorios, herramientas, abrasivos, sistemas Unistrut y otros suministros. Consulta por el producto específico que necesitas."],
 ["¿Cómo puedo solicitar una cotización?","Puedes llenar el formulario de esta página o escribirnos por WhatsApp al +51 982 572 162. Indica producto, medida, material, cantidad y destino."],
@@ -92,11 +94,38 @@ function answerTyped(q){const s=q.toLowerCase();let best=null;if(/cotiz|precio|c
 if(best!==null){addBubble(faqs[best][1],"bot");}else{addBubble("No tengo una respuesta confirmada para esa consulta. Para evitar darte información incorrecta, te recomiendo escribirnos directamente por WhatsApp o correo.","bot");}
 const a=document.createElement("a");a.href="https://wa.me/"+WHATSAPP+"?text="+encodeURIComponent("Hola, tengo esta consulta: "+q);a.target="_blank";a.rel="noopener";a.className="btn";a.style.cssText="font-size:12px;padding:9px 12px;margin-bottom:12px;display:inline-block";a.textContent="Consultar con el equipo";chatBody.appendChild(a);chatBody.scrollTop=chatBody.scrollHeight;}
 showFaqs();
-document.getElementById("chatLaunch").addEventListener("click",()=>chatWindow.classList.toggle("open"));
+document.getElementById("chatLaunch").addEventListener("click",()=>{chatWindow.classList.toggle("open");if(chatWindow.classList.contains("open"))setTimeout(()=>document.getElementById("chatInput").focus(),50);});
 document.getElementById("chatClose").addEventListener("click",()=>chatWindow.classList.remove("open"));
-function sendChat(){const i=document.getElementById("chatInput");const q=i.value.trim();if(!q)return;addBubble(q,"user");i.value="";answerTyped(q);}
+async async function sendChat(){
+ const i=document.getElementById("chatInput"); const q=i.value.trim(); if(!q)return;
+ addBubble(q,"user"); i.value="";
+ const sendBtn=document.getElementById("chatSend"); sendBtn.disabled=true; sendBtn.textContent="...";
+ const waiting=document.createElement("div"); waiting.className="bubble bot"; waiting.textContent="Estoy revisando tu consulta..."; waiting.id="chatWaiting"; chatBody.appendChild(waiting); chatBody.scrollTop=chatBody.scrollHeight;
+ try {
+   const response=await fetch(N8N_CHAT_WEBHOOK,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({action:"sendMessage",chatInput:q,sessionId:CHAT_SESSION_ID})});
+   if(!response.ok) throw new Error("HTTP "+response.status);
+   const data=await response.json();
+   const wait=document.getElementById("chatWaiting"); if(wait)wait.remove();
+   let answer="";
+   if(typeof data==="string") answer=data;
+   else if(data){
+     if(typeof data.output==="string") answer=data.output;
+     else if(typeof data.text==="string") answer=data.text;
+     else if(typeof data.response==="string") answer=data.response;
+     else if(typeof data.message==="string") answer=data.message;
+     else if(Array.isArray(data) && data[0]) answer=data[0].output||data[0].text||data[0].response||data[0].message||"";
+     else if(data.data && typeof data.data==="string") answer=data.data;
+   }
+   if(answer.trim()) addBubble(answer.trim(),"bot");
+   else { addBubble("Recibí respuesta del servicio, pero no pude identificar el texto. Revisa el formato de respuesta del flujo de n8n.","bot"); }
+ } catch(err) {
+   const wait=document.getElementById("chatWaiting"); if(wait)wait.remove();
+   addBubble("No pude conectar con el asistente en este momento. Te responderé con la información básica disponible y puedes continuar por WhatsApp.","bot");
+   answerTyped(q);
+ } finally { sendBtn.disabled=false; sendBtn.textContent="Enviar"; }
+}
 document.getElementById("chatSend").addEventListener("click",sendChat);
-document.getElementById("chatInput").addEventListener("keydown",e=>{if(e.key==="Enter")sendChat();});
+document.getElementById("chatInput").addEventListener("keydown",e=>{if(e.key==="Enter"){e.preventDefault();sendChat();}});
 function getFormMessage(){const f=document.getElementById("quoteForm");if(!f.reportValidity())return null;const d=new FormData(f);return "Solicitud de cotización - Corporación Ferretera Heistseng\nNombre: "+d.get("name")+"\nEmpresa: "+(d.get("company")||"No indicada")+"\nTeléfono: "+d.get("phone")+"\nCorreo: "+d.get("email")+"\nProducto: "+d.get("product")+"\nDetalle: "+d.get("message");}
 document.getElementById("quoteForm").addEventListener("submit",e=>{e.preventDefault();const msg=getFormMessage();if(msg)window.open("https://wa.me/"+WHATSAPP+"?text="+encodeURIComponent(msg),"_blank","noopener");});
 document.getElementById("emailBtn").addEventListener("click",()=>{const msg=getFormMessage();if(msg)window.location.href="mailto:"+EMAIL+"?subject="+encodeURIComponent("Solicitud de cotización - Heistseng")+"&body="+encodeURIComponent(msg);});
